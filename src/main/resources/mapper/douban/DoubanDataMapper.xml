@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.demo.showchart.douban.dao.DoubanDataMapper">
+  <resultMap id="BaseResultMap" type="com.demo.showchart.douban.entity.DoubanData">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="info_link" jdbcType="VARCHAR" property="infoLink" />
+    <result column="pic_link" jdbcType="VARCHAR" property="picLink" />
+    <result column="cname" jdbcType="VARCHAR" property="cname" />
+    <result column="ename" jdbcType="VARCHAR" property="ename" />
+    <result column="score" jdbcType="DOUBLE" property="score" />
+    <result column="rated" jdbcType="INTEGER" property="rated" />
+    <result column="instroduction" jdbcType="VARCHAR" property="instroduction" />
+    <result column="info" jdbcType="VARCHAR" property="info" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, info_link, pic_link, cname, ename, score, rated, instroduction, info
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from douban_top250
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from douban_top250
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.demo.showchart.douban.entity.DoubanData">
+    insert into douban_top250 (id, info_link, pic_link, 
+      cname, ename, score, 
+      rated, instroduction, info
+      )
+    values (#{id,jdbcType=INTEGER}, #{infoLink,jdbcType=VARCHAR}, #{picLink,jdbcType=VARCHAR}, 
+      #{cname,jdbcType=VARCHAR}, #{ename,jdbcType=VARCHAR}, #{score,jdbcType=DOUBLE}, 
+      #{rated,jdbcType=INTEGER}, #{instroduction,jdbcType=VARCHAR}, #{info,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.demo.showchart.douban.entity.DoubanData">
+    insert into douban_top250
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="infoLink != null">
+        info_link,
+      </if>
+      <if test="picLink != null">
+        pic_link,
+      </if>
+      <if test="cname != null">
+        cname,
+      </if>
+      <if test="ename != null">
+        ename,
+      </if>
+      <if test="score != null">
+        score,
+      </if>
+      <if test="rated != null">
+        rated,
+      </if>
+      <if test="instroduction != null">
+        instroduction,
+      </if>
+      <if test="info != null">
+        info,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="infoLink != null">
+        #{infoLink,jdbcType=VARCHAR},
+      </if>
+      <if test="picLink != null">
+        #{picLink,jdbcType=VARCHAR},
+      </if>
+      <if test="cname != null">
+        #{cname,jdbcType=VARCHAR},
+      </if>
+      <if test="ename != null">
+        #{ename,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null">
+        #{score,jdbcType=DOUBLE},
+      </if>
+      <if test="rated != null">
+        #{rated,jdbcType=INTEGER},
+      </if>
+      <if test="instroduction != null">
+        #{instroduction,jdbcType=VARCHAR},
+      </if>
+      <if test="info != null">
+        #{info,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.demo.showchart.douban.entity.DoubanData">
+    update douban_top250
+    <set>
+      <if test="infoLink != null">
+        info_link = #{infoLink,jdbcType=VARCHAR},
+      </if>
+      <if test="picLink != null">
+        pic_link = #{picLink,jdbcType=VARCHAR},
+      </if>
+      <if test="cname != null">
+        cname = #{cname,jdbcType=VARCHAR},
+      </if>
+      <if test="ename != null">
+        ename = #{ename,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null">
+        score = #{score,jdbcType=DOUBLE},
+      </if>
+      <if test="rated != null">
+        rated = #{rated,jdbcType=INTEGER},
+      </if>
+      <if test="instroduction != null">
+        instroduction = #{instroduction,jdbcType=VARCHAR},
+      </if>
+      <if test="info != null">
+        info = #{info,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.demo.showchart.douban.entity.DoubanData">
+    update douban_top250
+    set info_link = #{infoLink,jdbcType=VARCHAR},
+      pic_link = #{picLink,jdbcType=VARCHAR},
+      cname = #{cname,jdbcType=VARCHAR},
+      ename = #{ename,jdbcType=VARCHAR},
+      score = #{score,jdbcType=DOUBLE},
+      rated = #{rated,jdbcType=INTEGER},
+      instroduction = #{instroduction,jdbcType=VARCHAR},
+      info = #{info,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="listDoubanData" resultType="com.demo.showchart.douban.entity.DoubanData">
+    select
+    <include refid="Base_Column_List"/>
+    from  douban_top250
+  </select>
+</mapper>
